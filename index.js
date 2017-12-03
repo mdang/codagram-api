@@ -32,7 +32,11 @@ const upload = multer({
 const app = require('express')();
 const http = require('http').Server(app);
 
-app.post('/upload', upload.single('photo'), (req, res, next) => {
+app.get('/api/posts', (req, res) => {
+  res.json([]);
+});
+
+app.post('/api/posts', upload.single('photo'), (req, res, next) => {
   res.json(req.file)
 })
 
