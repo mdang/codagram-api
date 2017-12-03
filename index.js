@@ -58,8 +58,6 @@ app.post('/api/posts', upload.single('photo'), (req, res, next) => {
 
     res.json(post);
   });
-
-  res.json(req.file);
 })
 
 let port = process.env.PORT || 3000;
