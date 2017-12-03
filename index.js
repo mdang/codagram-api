@@ -29,7 +29,7 @@ const upload = multer({
     key(req, file, cb) {
       cb(null, Date.now().toString() + '.png');
     }
-  });
+  })
 });
 
 const Post = require('./models/post');
