@@ -1,7 +1,9 @@
-// Use local .env file for env vars when not deployed
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
+
+const app = require('express')();
+const http = require('http').Server(app);
 
 const aws = require('aws-sdk')
 const multer = require('multer')
@@ -13,7 +15,6 @@ const s3 = new aws.S3({
   region: "us-east-1",
 });
 
-// Initialize multers3 with our s3 config and other options
 const upload = multer({
   storage: multerS3({
     s3,
@@ -28,15 +29,12 @@ const upload = multer({
   })
 })
 
-// Expose the /upload endpoint
-const app = require('express')();
-const http = require('http').Server(app);
-
 app.get('/api/posts', (req, res) => {
   res.json([]);
 });
 
 app.post('/api/posts', upload.single('photo'), (req, res, next) => {
+  console.log('req.file', req.file);
   res.json(req.file)
 })
 
