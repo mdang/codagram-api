@@ -41,13 +41,11 @@ app.get('/api/posts', (req, res) => {
       res.status(500).json({});
     }
 
-    console.log('Posts: ', posts);
     res.json(posts);
   });
 });
 
 app.post('/api/posts', upload.single('photo'), (req, res, next) => {
-  console.log('req.file', req.file);
   const post = new Post(req.file);
 
   post.save((err, post) => {

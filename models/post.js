@@ -1,7 +1,7 @@
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
   ObjectId = mongoose.Schema.ObjectId;
 
-var schema = new mongoose.Schema({
+const schema = new mongoose.Schema({
   bucket: { type: String, required: true },
   key: { type: String, required: true },
   size: { type: Number, required: true },
@@ -12,6 +12,6 @@ var schema = new mongoose.Schema({
   etag: String
 });
 
-var Post = mongoose.model('Post', schema);
+const Post = mongoose.model('Post', schema);
 
 module.exports = Post;
