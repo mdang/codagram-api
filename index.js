@@ -35,7 +35,7 @@ const upload = multer({
 const Post = require('./models/post');
 
 app.get('/api/posts', (req, res) => {
-  Post.find({}, (err, posts) => {
+  Post.find({}, null, { sort: { _id: -1 }}, (err, posts) => {
     if (err) {
       console.log('Database error: ', err);
       res.status(500).json({});
